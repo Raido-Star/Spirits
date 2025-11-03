@@ -1,0 +1,69 @@
+# NexusForge Embedded Development Environment
+# Git ignore file
+
+# Environment variables
+.env
+
+# Build directories
+build/
+**/build/
+.pio/
+**/.pio/
+
+# PlatformIO
+.pioenvs/
+.piolibdeps/
+.platformio/
+**/.platformio/
+
+# Arduino
+Arduino/
+**/.arduino/
+
+# ESP-IDF
+**/sdkconfig
+**/sdkconfig.old
+**/dependencies.lock
+
+# Compiled files
+*.o
+*.a
+*.so
+*.bin
+*.elf
+*.hex
+*.map
+
+# Logs
+*.log
+logs/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Project specific
+projects/*/build/
+projects/*/.pio/
+
+# Cache
+ccache/
+.cache/

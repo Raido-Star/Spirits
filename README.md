@@ -231,8 +231,31 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support, email support@nexusforge.ai or join our Discord community.
 
+## 🔧 Embedded Development Environment
+
+NexusForge includes a comprehensive embedded development environment for microcontrollers and Raspberry Pi!
+
+### Features
+- **ESP32 Family**: ESP32, ESP32-S2, ESP32-S3, ESP32-C3, ESP32-C6
+- **Arduino**: All compatible boards
+- **STM32**: Complete STM32 family support
+- **Raspberry Pi**: Cross-compilation for all models
+- **Docker-based**: Consistent environment across platforms
+- **Rich Tooling**: PlatformIO, ESP-IDF, Arduino CLI, and more
+
+### Quick Start
+```bash
+cd embedded
+make setup
+make docker-up
+make shell
+```
+
+See [embedded/README.md](embedded/README.md) for complete documentation.
+
 ## 🔮 Roadmap
 
+- [x] **Embedded Development Environment** - Build code for microcontrollers and Raspberry Pi
 - [ ] Advanced AI model fine-tuning
 - [ ] Collaborative editing features
 - [ ] Mobile app development

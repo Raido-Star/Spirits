@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # Main embedded development environment
+  embedded-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nexusforge-embedded-dev
+    privileged: true  # Required for USB device access
+    volumes:
+      # Project workspace
+      - ./projects:/workspace/projects
+      - ./libraries:/workspace/libraries
+      - ./examples:/workspace/examples
+      - ./build:/workspace/build
+      # Configuration persistence
+      - platformio-data:/workspace/.platformio
+      - arduino-data:/workspace/Arduino
+      # USB device access
+      - /dev:/dev
+    devices:
+      # Serial ports (adjust based on your system)
+      - /dev/ttyUSB0:/dev/ttyUSB0
+      - /dev/ttyACM0:/dev/ttyACM0
+    environment:
+      - DISPLAY=${DISPLAY}
+      - TZ=UTC
+      # PlatformIO settings
+      - PLATFORMIO_CORE_DIR=/workspace/.platformio
+      - PLATFORMIO_BUILD_DIR=/workspace/build
+      # Build options
+      - BUILD_CACHE_DIR=/workspace/build/cache
+      - CCACHE_DIR=/workspace/build/ccache
+    ports:
+      - "8080:8080"   # Web interface
+      - "9000:9000"   # Debugging
+      - "3333:3333"   # OpenOCD
+    network_mode: "host"
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+  # Code server for web-based IDE (optional)
+  code-server:
+    image: codercom/code-server:latest
+    container_name: nexusforge-code-server
+    volumes:
+      - ./projects:/home/coder/projects
+      - ./libraries:/home/coder/libraries
+      - ./examples:/home/coder/examples
+      - code-server-config:/home/coder/.config
+    ports:
+      - "8081:8080"
+    environment:
+      - PASSWORD=nexusforge
+    restart: unless-stopped
+
+volumes:
+  platformio-data:
+  arduino-data:
+  code-server-config:
