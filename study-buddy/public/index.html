@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Buddy - AI Learning Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>🎓 Study Buddy</h1>
+      <p class="tagline">Screenshot anything you're learning. Get instant explanations.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Upload Section -->
+      <div class="upload-section" id="uploadSection">
+        <div class="upload-box" id="uploadBox">
+          <div class="upload-icon">📸</div>
+          <h2>Upload or Drop Your Screenshot</h2>
+          <p>Code, diagrams, concepts - anything you want to understand</p>
+          <input type="file" id="fileInput" accept="image/*" hidden>
+          <button class="btn-primary" onclick="document.getElementById('fileInput').click()">
+            Choose Image
+          </button>
+          <p class="hint">or drag and drop here</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="image-preview" id="imagePreview" style="display: none;">
+          <img id="previewImg" alt="Preview">
+          <button class="btn-secondary" onclick="resetUpload()">Choose Different Image</button>
+        </div>
+
+        <!-- Options -->
+        <div class="options" id="options" style="display: none;">
+          <div class="option-group">
+            <label for="levelSelect">Explanation Level:</label>
+            <select id="levelSelect" class="select">
+              <option value="beginner">🌱 Beginner - Simple & Clear</option>
+              <option value="intermediate">🌿 Intermediate - More Detail</option>
+              <option value="advanced">🌳 Advanced - Deep Dive</option>
+            </select>
+          </div>
+
+          <div class="option-group">
+            <label for="questionInput">Specific Question (Optional):</label>
+            <input
+              type="text"
+              id="questionInput"
+              class="input"
+              placeholder="e.g., 'How does this loop work?' or 'What's happening in line 5?'"
+            >
+          </div>
+
+          <button class="btn-primary btn-large" onclick="explainImage()">
+            ✨ Explain This
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div class="loading" id="loading" style="display: none;">
+        <div class="spinner"></div>
+        <p>Analyzing your screenshot...</p>
+      </div>
+
+      <!-- Results Section -->
+      <div class="results" id="results" style="display: none;">
+        <div class="explanation-box">
+          <div class="explanation-header">
+            <h2>💡 Explanation</h2>
+            <span class="level-badge" id="levelBadge"></span>
+          </div>
+          <div class="explanation-content" id="explanationContent"></div>
+        </div>
+
+        <!-- Follow-up Questions -->
+        <div class="follow-up-section">
+          <h3>🤔 Follow-up Questions</h3>
+          <div class="suggestions" id="suggestions"></div>
+
+          <div class="ask-more">
+            <input
+              type="text"
+              id="followUpInput"
+              class="input"
+              placeholder="Ask a follow-up question..."
+            >
+            <button class="btn-primary" onclick="askFollowUp()">Ask</button>
+          </div>
+        </div>
+
+        <!-- Follow-up Answers -->
+        <div id="followUpAnswers"></div>
+
+        <!-- Actions -->
+        <div class="actions">
+          <button class="btn-secondary" onclick="resetUpload()">Explain Another Screenshot</button>
+          <button class="btn-secondary" onclick="copyExplanation()">📋 Copy Explanation</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>Powered by GPT-4 Vision • Built for learners, by learners</p>
+      <p class="cost-info" id="costInfo"></p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
